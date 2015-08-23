@@ -4,38 +4,38 @@ In this project I have taken a baseline installation of a Linux distribution on 
 as well as ec2-52-10-248-83.us-west-2.compute.amazonaws.com
 Following the course for Project5, I have ensured that restaurant menu application is secured and prepared to withstand number of attack vectors. This includes any updates, upgrades, and configuration of web and database servers as well installation of different packages required to get this app running. 
 
-1. Launch your Virtual Machine with your [Udacity's account](https://www.udacity.com/account#!/development_environment). This is provided in Project Details.
+* Step 1 Launch your Virtual Machine with your [Udacity's account](https://www.udacity.com/account#!/development_environment). This is provided in Project Details.
 
-2. Follow the instructions provided to SSH into your server.
+* Step 2 Follow the instructions provided to SSH into your server.
 
-	1. Download Private Key.
+	- Download Private Key.
 	
-	2. Move the private key file into the folder ~/.ssh (where ~ is your environment's home 
+	- Move the private key file into the folder ~/.ssh (where ~ is your environment's home 
 		directory). So if you downloaded the file to the Downloads folder, just execute the 
 		following command in your terminal.
 		
 		mv ~/Downloads/udacity_key.rsa ~/.ssh/
 		
-	3. Open your terminal and type in:
+	- Open your terminal and type in:
 	
 		chmod 600 ~/.ssh/udacity_key.rsa
 		
-	4. In your terminal, type in:
+	- In your terminal, type in:
 	
 		ssh -i ~/.ssh/udacity_key.rsa root@PUPLIC-IP-ADDRESS
 
 
-3. Create a new user named grader.
+* Step 3 Create a new user named grader.
 
-	1. adduser grader
+	- adduser grader
 	
-4. Give the grader the permission to sudo.
+* Step 4 Give the grader the permission to sudo.
 
-	1. Connect as grader from your local
+	- Connect as grader from your local
 	
 		ssh grader@PUPLIC-IP-ADDRESS -p 22
 	
-	2. Type in: 
+	- Type in: 
 		
 		visudo
 	
@@ -43,87 +43,120 @@ Following the course for Project5, I have ensured that restaurant menu applicati
 			
 			grader ALL=(ALL:ALL) ALL
 		
-5. Update all currently installed packages, typing following commands:
+* Step 5 Update all currently installed packages, typing following commands:
 
-	1. su - grader
-	2. sudo apt-get update
-	3. sudo apt-get upgrade
+	- su - grader
+	
+	- sudo apt-get update
+	
+	- sudo apt-get upgrade
 	
 	
-6.Change the SSH port from 22 to 2200.
+* Step 6 Change the SSH port from 22 to 2200.
 	
-	1. On local machine type the following command:
+	- On local machine type the following command:
 		a. ssh-keygen => You can pick whatever password you want. 
+		
 		b. Enter file name /Users/shawnrajput/.ssh/linuxCourse
 	
-	2. To place the key on remote server. Log into server as the user.
+	- To place the key on remote server. Log into server as the user.
 		
 		a. mkdir .ssh
+		
 		b. touch .ssh/authorized_keys => This will create a file within your .ssh folder.
+		
 		c. From your local machine terminal type the following:
 			
 			I. cat .ssh/linuxCourse.pub => This will show the key id that we need for authentication
 		
 		c. Now on your terminal where you are signed in as grader type the following:
+			
 			I. nano .ssh/authorized_keys and paste the key id that you copied from .ssh/linuxCourse.pub
 			
 		d. Now type the following commands to set permissions for .ssh and .ssh/authorized_keys
+			
 			I. chmod 777 .ssh
+			
 			II. chmod 644 .ssh/authorized_keys
 	
-	3. Disable password based login. Type the following commands to complete this step
+	- Disable password based login. Type the following commands to complete this step
 		
-		1. sudo nano /etc/ssh/sshd_config => open the config file
-		2. Replace the current Port with 2200 => change the port from 22 to 2200
-		3. Replace no with yes for PasswordAuthentication 
-		4. AllowUsers grader => Add it at the bottom of the file
-		5. /etc/init.d/ssh restart or sudo service ssh restart => Restart service
-		6. ssh -v grader@PUBLIC-IP-ADDRESS -p2200 => Log in using this command as grader 
+		a. sudo nano /etc/ssh/sshd_config => open the config file
+		
+		b. Replace the current Port with 2200 => change the port from 22 to 2200
+		
+		c. Replace no with yes for PasswordAuthentication 
+		
+		d. AllowUsers grader => Add it at the bottom of the file
+		
+		e. /etc/init.d/ssh restart or sudo service ssh restart => Restart service
+		
+		f. ssh -v grader@PUBLIC-IP-ADDRESS -p2200 => Log in using this command as grader 
 
-7. Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).
+* Step 7 Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).
 	
 	1. sudo ufw default deny incoming 
+	
 	2. sudo ufw default allow outgoing
+	
 	3. sudo ufw allow ssh
+	
 	4. sudo ufw allow 2222/tcp
+	
 	5. sudo ufw allow www
+	
 	6. sudo ufw allow enable
+	
 	7. sudo ufw status => This will show you that ufw is enabled and activated.
 	
-8. Configure the local timezone to UTC
+* Step 8 Configure the local timezone to UTC
 	
 	1. sudo dpkg-reconfigure tzdata
 	2. From the provided list, select OK for None of the above.
 	3. From the provided list, select OK for UTC.
 	
-9. Install and configure Apache to serve a Python mod_wsgi application
+* Step 9 Install and configure Apache to serve a Python mod_wsgi application
 	
 	1. sudo apt-get install apache2
+	
 	2. Go to http://PUBLICIPADDRESSGOESHERE/ in your browser. You will see a message that states "It works!" on the page.
+	
 	3. sudo apt-get install python-setuptools libapache2-mod-wsgi
+	
 	4. sudo service apache2 restart
 	
 
-11. Install git, clone and setup your Catalog App project (from your GitHub repository from earlier in the Nanodegree program) so that it functions correctly when visiting your server’s IP address in a browser. Remember to set this up appropriately so that your .git directory is not publicly accessible via a browser!
+* Step 11 Install git, clone and setup your Catalog App project (from your GitHub repository from earlier in the Nanodegree program) so that it functions correctly when visiting your server’s IP address in a browser. Remember to set this up appropriately so that your .git directory is not publicly accessible via a browser!
 	
 	First we ned to install and configure git:
 	
-	1. sudo apt-get install git 
-	2. git config --global user.name "Your name"
-	3. git config --global user.email "youremail@email.com"
+	- sudo apt-get install git 
+	
+	- git config --global user.name "Your name"
+	
+	- git config --global user.email "youremail@email.com"
 	
 	Now we need to setup for deploying a Flask Application on Ubuntu VPS:
 	
-	4. sudo apt-get install libapache2-mod-wsgi python-dev
-	5. sudo a2enmod wsgi
-	6. cd /var/www
-	7. sudo mkdir catalog
-	8. cd catalog
-	9. sudo mkdir catalog
-	10. cd catalog
-	11. sudo mkdir static templates
-	12. sudo nano __init__.py
-	13. Type the following: 
+	- sudo apt-get install libapache2-mod-wsgi python-dev
+	
+	- sudo a2enmod wsgi
+	
+	- cd /var/www
+	
+	- sudo mkdir catalog
+	
+	- cd catalog
+	
+	- sudo mkdir catalog
+	
+	- cd catalog
+	
+	- sudo mkdir static templates
+	
+	- sudo nano __init__.py
+	
+	- Type the following: 
 ```	
 from flask import Flask
 app = Flask(__name__)
@@ -134,10 +167,10 @@ if __name__ == "__main__":
     app.run()
 ```
 	
-	14. sudo apt-get install python-pip
-	15. sudo apt-get install Flask
-	16. sudo nano /etc/apache2/sites-available/catalog.conf
-	17. Type the following:
+	- sudo apt-get install python-pip
+	- sudo apt-get install Flask
+	- sudo nano /etc/apache2/sites-available/catalog.conf
+	- Type the following:
 ```	
 <VirtualHost *:80>
   ServerName PUBLIC-IP-ADDRESS
@@ -158,10 +191,10 @@ if __name__ == "__main__":
 </VirtualHost>
 	
 ```
-	18. sudo a2ensite catalog
-	19. cd /var/www/catalog
-	20. sudo nano catalog.wsgi
-	21. Type the following: 
+	- sudo a2ensite catalog
+	- cd /var/www/catalog
+	- sudo nano catalog.wsgi
+	- Type the following: 
 ```	
 #!/usr/bin/python
 import sys
@@ -173,14 +206,14 @@ from catalog import app as application
 application.secret_key = 'Add your secret key'
  
 ```
-	21. sudo service apache2 restart
+	- sudo service apache2 restart
 	
 	Now we need to clone github repo and make it web inaccessible:
 	
-	22. git clone https://github.com/rajputss/Catalog.git
-	23. mv /var/www/catalog/Catalog/* /var/www/catalog/catalog/
-	24. delete the leftover empty directory Catalog 
-	25. Create and open .htaccess file:
+	- git clone https://github.com/rajputss/Catalog.git
+	- mv /var/www/catalog/Catalog/* /var/www/catalog/catalog/
+	- delete the leftover empty directory Catalog 
+	- Create and open .htaccess file:
 	
 		a. cd /var/www/catalog/
 		b. sudo nano .htaccess
@@ -190,15 +223,15 @@ application.secret_key = 'Add your secret key'
 RedirectMatch 404 /\.git
 ```
 		
-	26. pip install httplib2
-	27. pip install requests
-	28. sudo pip install --upgrade oauth2client
-	29. sudo pip install sqlalchemy
-	30. sudo apt-get install python-psycopg2
+	- pip install httplib2
+	- pip install requests
+	- sudo pip install --upgrade oauth2client
+	- sudo pip install sqlalchemy
+	- sudo apt-get install python-psycopg2
 	
-10. Install and configure PostgreSQL:
+* Step 10 Install and configure PostgreSQL:
 
-	1. Create a new user named catalog that has limited permissions to your catalog application database.
+	- Create a new user named catalog that has limited permissions to your catalog application database.
 	
 		a. sudo apt-get install postgresql postgresql-contrib
 
