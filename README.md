@@ -310,3 +310,25 @@ Back to completing the final steps for 11.
 			II. Click on your App, go to Settings and fill in your public IP-Address including prefixed hhtp:// in the Site URL field
 
 			III. To leave the development mode, so others can login as well, also fill in a contact email address in the respective field, "Save Changes", click on 'Status & Review'
+
+### Various sources used to complete this project and for error resolution
+
+First and foremost, I would like to credit Udacity and it's team; specifically Mike Wales. His awesome course have really helped me complete this. There are many sources that were used to actually understand this project rubric and complete it. This includes digital ocean, github project of fellow udacians and how they have completed this project, stack overflow etc. 
+
+1. [Udacity Discussion Forums](https://discussions.udacity.com/c/nd004-p5-linux-based-server-configuration)
+2. [Udacity's Linux Server Configuration Course](https://www.udacity.com/course/viewer#!/c-ud299-nd) For steps 1,2, 3, 4, 5, 6, 7, 8, 9, 
+3. Github profiles with similar projects
+	* (https://github.com/WebDesigner32)
+	* (https://github.com/stueken)
+4. [Update and upgrade all currently installed packages](http://askubuntu.com/questions/94102/what-is-the-difference-between-apt-get-update-and-upgrade)
+5. [Changing the port from 22 to 2200) (http://askubuntu.com/questions/16650/create-a-new-ssh-user-on-ubuntu-server)
+	* I have learned from this site a bit but followed Mike Wales course for implementation
+6. [Get rid of the warning message sudo: unable to resolve host ... when sudo is executed:](http://askubuntu.com/questions/59458/error-message-when-i-run-sudo-unable-to-resolve-host-none)
+	* I learned of this source from fellow udacians [github profile](https://github.com/stueken)
+7. [Handle the message System restart required after login:](http://superuser.com/questions/815433/how-urgent-is-a-system-restart-required-for-security)
+	* I learned of this source from fellow udacians [github profile](https://github.com/stueken)
+8. [Get rid of the message "Could not reliably determine the servers's fully qualified domain name" after restart](http://askubuntu.com/questions/256013/could-not-reliably-determine-the-servers-fully-qualified-domain-name)
+	* I learned of this source from fellow udacians [github profile](https://github.com/stueken)
+9. [Securing postgresql on an ubuntu](https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps)
+	* I learned of this source from fellow udacians [github profile](https://github.com/WebDesigner32)
+10. Step 10 that requires database setup. [github profile](https://github.com/WebDesigner32)
