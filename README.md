@@ -1,5 +1,7 @@
 #LINUX SERVER CONFIGURATION
 
+<img width="1210" alt="screen shot 2015-08-23 at 12 59 13 pm" src="https://cloud.githubusercontent.com/assets/4694107/9429970/9fd08bbc-49a8-11e5-83d7-27d9c51dc07f.png">
+
 In this project I have taken a baseline installation of a Linux distribution on a virtual machine and prepare it to host my catalog web application that I built going through Udacity's Project 3 course, that comprises of Full Stack Foundation and Authentication and Authorization: OAUTH. This web application can be accessed at http://52.10.248.83/
 as well as ec2-52-10-248-83.us-west-2.compute.amazonaws.com
 Following the course for Project5, I have ensured that restaurant menu application is secured and prepared to withstand number of attack vectors. This includes any updates, upgrades, and configuration of web and database servers as well installation of different packages required to get this app running. 
